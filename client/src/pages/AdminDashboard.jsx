@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
 function AdminDashboard() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
@@ -9,6 +8,7 @@ function AdminDashboard() {
   const [stock, setStock] = useState("");
   const [description, setDescription] =
   useState("");
+  const [size, setSize] = useState("");
   const [products, setProducts] = useState([]);
   const [editingId, setEditingId] =
   useState(null);
@@ -70,6 +70,7 @@ if (!user?.isAdmin) {
           category,
           stock,
           description,
+           size,
         },
         {
           headers: {
@@ -88,6 +89,7 @@ if (!user?.isAdmin) {
       setCategory("");
       setStock("");
       setDescription("");
+      setSize("");
 
       fetchProducts();
     } catch (error) {
@@ -132,6 +134,7 @@ if (!user?.isAdmin) {
           category,
           stock,
           description,
+          size,
         },
         {
           headers: {
@@ -152,6 +155,7 @@ if (!user?.isAdmin) {
       setCategory("");
       setStock("");
       setDescription("");
+      setSize("");
 
       fetchProducts();
     } catch (error) {
@@ -205,6 +209,13 @@ if (!user?.isAdmin) {
             setCategory(e.target.value)
           }
         />
+        <input
+  placeholder="Size"
+  value={size}
+  onChange={(e) =>
+    setSize(e.target.value)
+  }
+/>
 
         <input
           placeholder="Stock"
@@ -262,6 +273,7 @@ if (!user?.isAdmin) {
   <p>₹{product.price}</p>
   <p>{product.category}</p>
   <p>Stock: {product.stock}</p>
+  <p>Size: {product.size}</p>
 </div>
 
 <div
@@ -282,6 +294,9 @@ if (!user?.isAdmin) {
       setDescription(
         product.description || ""
       );
+      setSize(
+  product.size || ""
+);
     }}
     style={{
       background: "#73806F",

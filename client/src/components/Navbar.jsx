@@ -20,14 +20,30 @@ function Navbar() {
   );
 
   return (
-    <nav
-      style={{
-        display: "flex",
-        alignItems: "center",
-        padding: "30px 80px",
-        background: "#F7F5F2",
-      }}
-    >
+<nav
+  style={{
+    position: "sticky",
+    top: "0",
+    zIndex: "1000",
+
+    backdropFilter: "blur(15px)",
+    WebkitBackdropFilter:
+      "blur(15px)",
+
+    background:
+      "rgba(243, 219, 219, 0.65)",
+
+    borderBottom:
+      "1px solid rgba(255,255,255,0.3)",
+
+    boxShadow:
+      "0 8px 32px rgba(0,0,0,0.05)",
+
+    display: "flex",
+    alignItems: "center",
+    padding: "20px 80px",
+  }}
+>
       <h1
         style={{
           fontSize: "30px",

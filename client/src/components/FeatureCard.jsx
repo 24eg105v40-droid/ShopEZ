@@ -3,8 +3,8 @@ function FeatureCard({ icon, title, text, color }) {
     <div
       style={{
         background: color,
-        padding: "30px",
-        borderRadius: "30px"
+        padding: "20px",
+        borderRadius: "20px"
       }}
     >
       <div style={{ marginBottom: "20px" }}>

@@ -209,7 +209,7 @@ const featuredProducts = products.filter(
 
 <div
   style={{
-    padding: "0 80px 100px",
+    padding: "0 80px 0px",
   }}
 >
   <h2

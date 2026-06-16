@@ -8,8 +8,37 @@ function ProductDetails() {
   const { id } = useParams();
   const { addToCart } = useContext(CartContext);
   const [added, setAdded] = useState(false);
-
+const [message, setMessage] =
+  useState("");
   const [product, setProduct] = useState(null);
+  const handleBuyNow = async () => {
+  try {
+    const token =
+      localStorage.getItem("token");
+
+    await axios.post(
+      "http://localhost:8000/api/orders",
+      {
+        products: [
+          {
+            product: product._id,
+            quantity: 1,
+          },
+        ],
+        totalPrice: product.price,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    setMessage("✓ Order placed successfully!");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   useEffect(() => {
     axios
@@ -69,39 +98,65 @@ function ProductDetails() {
   About This Product
 </h3>
 
-<p
+<div
   style={{
-    color: "#666",
-    lineHeight: "1.8",
-    maxWidth: "600px",
-  }}
->
-  {product.description}
-</p>
-
-       <button
-  onClick={() => {
-    addToCart(product);
-    setAdded(true);
-
-    setTimeout(() => {
-      setAdded(false);
-    }, 1500);
-  }}
-  style={{
+    display: "flex",
+    gap: "15px",
     marginTop: "30px",
-    padding: "15px 30px",
-    border: "none",
-    borderRadius: "15px",
-    background: "#73806F",
-    color: "white",
-    cursor: "pointer",
   }}
 >
-  {added ? "✓ Added to Cart" : "Add To Cart"}
-</button>
+  <button
+    onClick={() => {
+      addToCart(product);
+      setAdded(true);
+
+      setTimeout(() => {
+        setAdded(false);
+      }, 1500);
+    }}
+    style={{
+      padding: "15px 30px",
+      border: "none",
+      borderRadius: "15px",
+      background: "#73806F",
+      color: "white",
+      cursor: "pointer",
+    }}
+  >
+    {added
+      ? "✓ Added to Cart"
+      : "Add To Cart"}
+  </button>
+
+  <button
+    onClick={handleBuyNow}
+    style={{
+      padding: "15px 30px",
+      border: "1px solid #73806F",
+      borderRadius: "15px",
+      background: "white",
+      color: "#73806F",
+      cursor: "pointer",
+    }}
+  >
+    Buy Now
+  </button>
+</div>
+ {message && (
+  <p
+    style={{
+      color: "green",
+      marginTop: "15px",
+      fontWeight: "600",
+    }}
+  >
+    {message}
+  </p>
+)}
       </div>
+      
     </div>
+    
   );
 }
 

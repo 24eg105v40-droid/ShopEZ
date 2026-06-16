@@ -25,10 +25,16 @@ const productSchema = new mongoose.Schema(
     type: Number,
     default: 0,
   },
+
   description: {
-  type: String,
-  default: "",
-},
+    type: String,
+    default: "",
+  },
+
+  size: {
+    type: String,
+    default: "One Size",
+  },
 },
 { timestamps: true }
 );

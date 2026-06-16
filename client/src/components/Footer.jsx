@@ -1,12 +1,12 @@
 function Footer() {
   return (
-    <footer
-      style={{
-        background: "#EFEAE2",
-        padding: "80px",
-        marginTop: "100px",
-      }}
-    >
+  <footer
+  style={{
+    background: "#EFEAE2",
+    padding: "40px 40px",
+    marginTop: "20px",
+  }}
+>
       <h2>ShopEZ</h2>
 
       <p
@@ -22,7 +22,7 @@ function Footer() {
         style={{
           display: "flex",
           gap: "100px",
-          marginTop: "50px",
+          marginTop: "40px",
         }}
       >
         <div>

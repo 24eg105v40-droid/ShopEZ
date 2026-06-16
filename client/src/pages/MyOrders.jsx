@@ -87,9 +87,71 @@ return (
           >
   Status: <strong>{order.status}</strong>
 </p>
+<div
+  style={{
+    display: "flex",
+    gap: "10px",
+    marginTop: "15px",
+  }}
+>
+  {order.status !== "Delivered" && (
+    <button
+      onClick={async () => {
+        const token =
+          localStorage.getItem("token");
+
+        await axios.delete(
+          `http://localhost:8000/api/orders/${order._id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        window.location.reload();
+      }}
+      style={{
+      background: "#ff4d4d",
+    color: "white",
+    border: "none",
+    padding: "10px 15px",
+    borderRadius: "10px",
+    cursor: "pointer",
+    marginTop: "10px",
+    marginLeft: "auto",
+  }}
+    >
+      Cancel Order
+    </button>
+  )}
+
+  {order.status === "Delivered" && (
+    <button
+      onClick={() =>
+        alert(
+          "Return request submitted successfully."
+        )
+      }
+      style={{
+        background: "#73806F",
+        color: "white",
+        border: "none",
+        padding: "10px 15px",
+        borderRadius: "10px",
+        cursor: "pointer",
+        
+      }}
+    >
+      Return Order
+    </button>
+  )}
+</div>
+
         </div>
       ))
     )}
+    
   </div>
 );
 }
